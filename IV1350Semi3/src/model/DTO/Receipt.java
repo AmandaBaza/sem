@@ -28,7 +28,7 @@ public class Receipt {
             receipt = receipt + itemToString(allItems[i])+ "\n";
         }
         receipt = receipt + ("\n Total Price: " +totalPrice+ "\n Amout paid: " +amountPaid+ "\n Amout back: " +change
-                +"---------------------------------------------------");
+                +"\n---------------------------------------------------\n");
         return receipt;
     }
     private String itemToString(ItemDTO item) {
