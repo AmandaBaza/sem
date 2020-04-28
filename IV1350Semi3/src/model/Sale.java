@@ -1,5 +1,6 @@
 package model;
 
+import dbHandler.AccountingRegistry;
 import dbHandler.InventoryRegistry;
 import model.DTO.ItemDTO;
 import model.DTO.Receipt;
@@ -12,11 +13,14 @@ public class Sale {
     private double change = 0;
     private ArrayList<ItemDTO> allItems = new ArrayList<>();
 
-    private InventoryRegistry IventoryReg;
+    private AccountingRegistry accountingReg;
+    private InventoryRegistry inventoryReg;
     private Receipt receipt;
 
     public Sale() {
         receipt = new Receipt();
+        accountingReg = new AccountingRegistry();
+        inventoryReg = new InventoryRegistry();
     }
 
     public void addItem(ItemDTO item, int itemQuantity){
@@ -30,6 +34,7 @@ public class Sale {
         else {
             allItems.add(item);
         }
+
         this.totalPrice = totalPrice + (item.getPrice()*itemQuantity);
     }
     private Boolean exists(ItemDTO itemDTO){
@@ -45,29 +50,29 @@ public class Sale {
         receipt.printReceipt(sale);
     }
 
-    public double payment(double cash) {
+    public double payment(double cash) throws Exception{
         amountPaid = cash;
         change = (amountPaid - totalPrice);
+        if (change < 0){
+            throw new Exception("Not enough money paid, need to pay more");
+        }
         return change;
     }
 
     public void updateTotalPrice(double discount) {
         if (discount != 0)
-            totalPrice = totalPrice * (1 - discount);
+            totalPrice = totalPrice * (1 - (discount/100));//100%-Discount in %
         else
             System.out.println ("No discount found");
     }
 
     public void inventoryUpdate() throws Exception {
-        allItems.forEach((itemDTO) ->
-        {
-            try {
-                IventoryReg.inventoryUpdate(itemDTO, itemDTO.getItemQuantity() );
-            } catch (Exception err) {
-            }
-        });
+        for (ItemDTO item: allItems) {
+            inventoryReg.inventoryUpdate(item, item.getItemQuantity() );
+        }
     }
-    public void accountingUpdate() {
+    public double accountingUpdate() {
+        return accountingReg.UpdateAccountingRegistry(totalPrice);
     }
 
     public double getTotalPrice() {

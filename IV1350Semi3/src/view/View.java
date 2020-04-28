@@ -46,3 +46,38 @@ public class View {
         System.out.println ("Money back:" + change);
     }
 }
+/*************** Out print **************************
+ Name:Orange
+ Price:10.0
+ Total price:30.0
+ Name:Apple
+ Price:12.0
+ Total price:42.0
+ Name:Banana
+ Price:9.0
+ Total price:60.0
+ Name:Orange
+ Price:10.0
+ Total price:80.0
+ Name:Pear
+ Price:8.0
+ Total price:160.0
+
+ ----------------------RECEIPT----------------------
+ Best Store
+ Adress 22, 123 45
+ 2020-04-20 13:56
+ 5.0x Orange................... à 10.0.....50.0
+ 1.0x Apple................... à 12.0.....12.0
+ 2.0x Banana................... à 9.0.....18.0
+ 10.0x Pear................... à 8.0.....80.0
+
+ Total Price: 144.0
+ Amount paid: 215.0
+ Amout back: 71.0
+ ---------------------------------------------------
+
+ Money paid:215.0
+ Money back:71.0
+
+ ****************************************************/

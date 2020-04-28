@@ -58,7 +58,7 @@ public class Controller {
         return sale.getTotalPrice();
     }
 
-    public double payment(double cash) {
+    public double payment(double cash) throws Exception {
         double change = sale.payment(cash);
         sale.receipt(sale);
         return change;

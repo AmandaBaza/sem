@@ -25,13 +25,13 @@ public class Receipt {
 
         String receipt = "\n----------------------RECEIPT----------------------\n"+storeName+ "\n"+storeAdress+ "\n" +dateAndTime+ "\n";
         for (int i = 0; i < allItems.length; i++) {
-            receipt = receipt + itemToString(allItems[i])+ "\n";
+            receipt = receipt + itemInReceipt(allItems[i])+ "\n";
         }
-        receipt = receipt + ("\n Total Price: " +totalPrice+ "\n Amout paid: " +amountPaid+ "\n Amout back: " +change
+        receipt = receipt + ("\n Total Price: " +totalPrice+ "\n Amount paid: " +amountPaid+ "\n Amout back: " +change
                 +"\n---------------------------------------------------\n");
         return receipt;
     }
-    private String itemToString(ItemDTO item) {
+    private String itemInReceipt(ItemDTO item) {
         double quantity =item.getItemQuantity();
         double price = item.getPrice();
         String itemAndPriceAsString = (quantity+"x "+ item.getName());

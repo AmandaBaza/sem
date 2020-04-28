@@ -19,11 +19,12 @@ public class InventoryRegistry {
     the quantity was 0, but it's an unnecessary call*/
     public void inventoryUpdate(ItemDTO itemBought, int quantity) throws Exception{
         Boolean found=false;
-        if(quantity < 1)
-            throw new Exception("One can't buy 0 or less of an item, quantity must be 1 or more");
         for (InventoryRegistry itemR:inventoryReg) {
             if(itemR.item.getItemIdentifier() == itemBought.getItemIdentifier()){
-                itemR.quantity= itemR.quantity - quantity;
+                if ((itemR.quantity - quantity) < 0){
+                    throw new Exception("quantity of an item in Inventory Registry can't be negative");
+                }
+                else {itemR.quantity= itemR.quantity - quantity;}
                 found=true;
             }
         }
@@ -33,7 +34,7 @@ public class InventoryRegistry {
 
     /*Instead of database*/
     private void createInv() {
-        InventoryRegistry item1 = new InventoryRegistry(new ItemDTO(1, 12, "Apple", 12),199) ;
+        InventoryRegistry item1 = new InventoryRegistry(new ItemDTO(1, 12, "Apple", 12),200) ;
         InventoryRegistry item2 = new InventoryRegistry(new ItemDTO(2, 6, "Banana", 9),50);
         InventoryRegistry item3 = new InventoryRegistry(new ItemDTO(3, 12, "Pear", 8),30);
         InventoryRegistry item4 = new InventoryRegistry(new ItemDTO(4, 25, "Orange", 10),10);
