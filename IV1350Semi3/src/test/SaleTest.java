@@ -138,7 +138,7 @@ public class SaleTest {
         }
         catch (Error error){}
     }
-   
+
         /*
     Cant seem to do a unit test on receipt() since it
     doesn't return or updates anything, will need to compare out print

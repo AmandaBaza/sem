@@ -53,13 +53,8 @@ public class Receipt {
     }
     /*Time and date of the sale*/
     private String getDateAndTime(){
-        String dateAndTime = "2020-04-20 13:56";
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime now = LocalDateTime.now();
-        try {
-            return dateTimeFormat.format(now);
-        }catch (Exception e){
-            return dateAndTime;
-        }
+        return dateTimeFormat.format(now);
     }
 }
