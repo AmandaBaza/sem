@@ -21,7 +21,7 @@ public class ItemRegistry {
         }
         return null;
     }
-    /*Instead of database*/
+    /**calls to database, instead of database it's manually added**/
     private ItemDTO[] getAllItems(){
         ItemDTO item1 = null;
         ItemDTO item2= null;

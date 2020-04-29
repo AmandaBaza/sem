@@ -14,18 +14,20 @@ public class Sale {
     private double change = 0;
     private double discount = 0;
     private ArrayList<ItemDTO> allItems = new ArrayList<>();
-
-    private AccountingRegistry accountingReg;
     private InventoryRegistry inventoryReg;
-    private Receipt receipt;
 
-
-    public Sale() throws Exception {
-
-        accountingReg = new AccountingRegistry();
+    /**
+     * Constructor
+     */
+    public Sale(){
         inventoryReg = new InventoryRegistry();
     }
 
+    /**
+     * Adds item to sale
+     * @param item to be added
+     * @param itemQuantity is how many of that item that exists in the Sale
+     */
     public void addItem(ItemDTO item, int itemQuantity){
         if(exists(item)){
             for(ItemDTO itemExisting:allItems){
@@ -49,6 +51,12 @@ public class Sale {
         return false;
     }
 
+    /**
+     * Payment logic in sale
+     * @param cash how much money is used to pay with
+     * @return change, rounded to two decimals
+     * @throws Exception is thrown if they payed too little (less than total price)
+     */
     public double payment(double cash) throws Exception{
         amountPaid = cash;
         change = (amountPaid - totalPrice);
@@ -62,6 +70,10 @@ public class Sale {
         return change;
     }
 
+    /**
+     * Updates the total price to after discount
+     * @param discount the number of percent (%) that is to be removed from the price
+     */
     public void updateTotalPrice(double discount) {
         this.discount = discount;
         if (discount != 0)
@@ -70,13 +82,19 @@ public class Sale {
             System.out.println ("No discount found");
     }
 
+    /**
+     * Update Inventory with all the items that was been bought
+     * @throws Exception if exception is thrown from inventoryUpdate
+     */
     public void inventoryUpdate() throws Exception {
         for (ItemDTO item: allItems) {
             inventoryReg.inventoryUpdate(item, item.getItemQuantity() );
         }
     }
 
-
+    /**
+     * Get methods
+     */
     public double getTotalPrice() {
         return totalPrice;
     }

@@ -20,7 +20,7 @@ public class AccountingRegistry {
         //Contacts database and sets new Accounting Value
     }
 
-    /**Instead of database**/
+    /**calls to database, instead of database it's manually added**/
     private double GetAccounting(){
         return 1500;
     }

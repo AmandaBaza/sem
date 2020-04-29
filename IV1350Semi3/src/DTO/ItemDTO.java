@@ -6,7 +6,7 @@ public class ItemDTO {
     private double price; //Item price, where vat is excluded
     private int VAT; //Item VAT in %
     private int quantity; //quantity of the item (how many there are of the same item)
-
+    /**Constructor**/
     public ItemDTO (int itemId, int VAT, String name, double price) throws Exception{
         if((VAT != 25 && VAT != 12 && VAT != 6)){
             throw new Exception("VAT can only be 25%, 12% or 6%");
@@ -16,7 +16,7 @@ public class ItemDTO {
         this.price = price;
         this.VAT = VAT;
     }
-
+    /**Get methods**/
     public String getName() {
         return name;
     }

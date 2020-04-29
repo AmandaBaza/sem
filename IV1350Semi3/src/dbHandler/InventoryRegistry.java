@@ -5,16 +5,22 @@ public class InventoryRegistry {
     private ItemDTO item;
     private int quantity;
 
-    /*Constructors*/
+    /**Constructor**/
     public InventoryRegistry(ItemDTO item, int quantity){
         this.item= item;
         this.quantity= quantity;
     }
+    /**Constructor**/
     public InventoryRegistry()  {
     }
 
-    /*Included 0 in exception, not cause any data would be wrong after the update if
-    the quantity was 0, but it's an unnecessary call*/
+    /**
+     * @param itemBought the item bought
+     * @param quantity how many of that item
+     * @throws Exception if the remaining number of the item in Inventory is negative (since you cant store negative number of items)
+     * @throws Exception if the item does not exist in the inventory, since you cant buy an item that is not in the store.
+     */
+
     public void inventoryUpdate(ItemDTO itemBought, int quantity) throws Exception{
         Boolean found=false;
         for (InventoryRegistry itemR:getInventoryRegistry()) {
@@ -30,7 +36,7 @@ public class InventoryRegistry {
             throw new Exception("Item not found in the Inventory Registry");
     }
 
-    /*Instead of database*/
+    /**calls to database, instead of database it's manually added**/
     private InventoryRegistry[] getInventoryRegistry() throws Exception{
             InventoryRegistry item1 = new InventoryRegistry(new ItemDTO(1, 12, "Apple", 12), 200);
             InventoryRegistry item2 = new InventoryRegistry(new ItemDTO(2, 6, "Banana", 9), 50);

@@ -31,7 +31,7 @@ public class CustomerRegistry {
         return 0;
     }
 
-    /**Instead of database**/
+    /**calls to database, instead of database it's manually added**/
     private CustomerRegistry[] getAllCustomers(){
         CustomerRegistry cR1= new CustomerRegistry("1999-01-01-1234",10);
         CustomerRegistry cR2= new CustomerRegistry("2000-01-01-1230",50);

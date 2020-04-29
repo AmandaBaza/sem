@@ -13,7 +13,7 @@ public class RegistryCreator {
         this.accountingReg = accountingReg;
         this.inventoryReg = inventoryReg;
     }
-
+    /**Get methods**/
     public ItemRegistry getItemRegistry()
     {
         return itemReg;
