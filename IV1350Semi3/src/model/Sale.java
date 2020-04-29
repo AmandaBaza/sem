@@ -21,7 +21,7 @@ public class Sale {
 
 
     public Sale() throws Exception {
-        receipt = new Receipt();
+
         accountingReg = new AccountingRegistry();
         inventoryReg = new InventoryRegistry();
     }
@@ -47,10 +47,6 @@ public class Sale {
             }
         }
         return false;
-    }
-
-    public void receipt(Sale sale){
-        receipt.printReceipt(sale);
     }
 
     public double payment(double cash) throws Exception{

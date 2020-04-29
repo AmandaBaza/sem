@@ -1,9 +1,5 @@
 package dbHandler;
 
-import model.CashRegister;
-
-import java.util.ArrayList;
-
 public class RegistryCreator {
     private ItemRegistry itemReg = new ItemRegistry();
     private CustomerRegistry customerReg = new CustomerRegistry();
@@ -16,10 +12,6 @@ public class RegistryCreator {
         this.itemReg = itemReg;
         this.accountingReg = accountingReg;
         this.inventoryReg = inventoryReg;
-    }
-
-    public RegistryCreator() throws Exception {
-
     }
 
     public ItemRegistry getItemRegistry()
@@ -37,16 +29,4 @@ public class RegistryCreator {
     {
         return accountingReg;
     }
-    /**
-    public double getCostumerDiscount(String customerID) {
-        double discount = 0;
-        for(int i = 0; i <customerReg.size(); i++){
-             discount = customerReg.get(i).getCustomerDiscount(customerID);
-            if(discount != 0) {
-                return discount;
-            }
-        }
-        return discount;
-    }
-     **/
 }

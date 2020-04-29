@@ -1,20 +1,27 @@
 package dbHandler;
 
-import java.util.ArrayList;
-
 public class CustomerRegistry {
     String customerId;
     double discount;
 
+    /**
+     * Constructor
+     */
     public CustomerRegistry(){
     }
-
+    /**
+     * Constructor where customer id and discount is set
+     */
     public CustomerRegistry(String customerId, double discount){
         this.customerId = customerId;
         this.discount = discount;
     }
 
-    /*Checks of the Customer is a member and if there is any discounts for them*/
+    /**
+     * Checks of the Customer is a member and if there is any discounts for them
+     * @param customerId used to identify customer
+     * @return the discount, if they aren't a, member it returns 0 (as in 0% discount)
+     */
     public double getCustomerDiscount(String customerId){
         for(CustomerRegistry customer: getAllCustomers()){
             if(customer.customerId.equals(customerId)) {
@@ -23,7 +30,8 @@ public class CustomerRegistry {
         }
         return 0;
     }
-    /*Instead of database*/
+
+    /**Instead of database**/
     private CustomerRegistry[] getAllCustomers(){
         CustomerRegistry cR1= new CustomerRegistry("1999-01-01-1234",10);
         CustomerRegistry cR2= new CustomerRegistry("2000-01-01-1230",50);

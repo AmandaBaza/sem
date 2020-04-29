@@ -1,6 +1,5 @@
 package test;
 
-
 import dbHandler.InventoryRegistry;
 import DTO.ItemDTO;
 import model.Sale;
@@ -59,6 +58,7 @@ public class SaleTest {
 
         assertEquals("Adding the same item multiple times doesnt create duplicate item objects in sale", 1,numberOfLoops);
         assertEquals(7,itemInSale.getItemIdentifier());
+        assertEquals(item, itemInSale);
         assertEquals("Adding the same item multiple times doesnt affect the total price", (13+25)*6, sale.getTotalPrice(), 0.0001);
 
         sale.addItem(item, -7);
@@ -71,8 +71,8 @@ public class SaleTest {
         double changeIs0 = (13+25)*6;
         double changeIs10 = ((13+25)*6)+10;
         double changeIsNotEnough = ((13+25)*6)-1;
-        assertEquals(0,sale.payment(changeIs0),0.01);
-        assertEquals(10,sale.payment(changeIs10),0.01);
+        assertEquals(0, sale.payment(changeIs0),0.01);
+        assertEquals(10, sale.payment(changeIs10),0.01);
 
         //tests if costumer pays too little Exception will be thrown
         //Should only pass if Exception is thrown

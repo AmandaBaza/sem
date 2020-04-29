@@ -15,7 +15,7 @@ public class View {
     }
 
     public void executions() throws Exception {
-        //try {
+        try {
 
             /**User starts new sale **/
             contr.startNewSale();
@@ -48,9 +48,9 @@ public class View {
         System.out.println("Total price:"+ contr.totalPrice());
             System.out.println("Money paid:" + cash);
             System.out.println("Money back:" + change);
-        //}catch (Exception e){
-          //  System.out.println("Exception has occurred");
-        //}
+        }catch (Exception e){
+            System.out.println("Exception has occurred");
+        }
     }
 }
 /*************** Out print **************************
