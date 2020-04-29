@@ -17,7 +17,7 @@ public class Sale {
     private InventoryRegistry inventoryReg;
     private Receipt receipt;
 
-    public Sale() {
+    public Sale() throws Exception {
         receipt = new Receipt();
         accountingReg = new AccountingRegistry();
         inventoryReg = new InventoryRegistry();
@@ -71,9 +71,7 @@ public class Sale {
             inventoryReg.inventoryUpdate(item, item.getItemQuantity() );
         }
     }
-    public double accountingUpdate() {
-        return accountingReg.UpdateAccountingRegistry(totalPrice);
-    }
+
 
     public double getTotalPrice() {
         return totalPrice;

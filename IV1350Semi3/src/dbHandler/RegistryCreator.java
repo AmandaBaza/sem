@@ -1,5 +1,7 @@
 package dbHandler;
 
+import model.CashRegister;
+
 import java.util.ArrayList;
 
 public class RegistryCreator {
@@ -9,14 +11,14 @@ public class RegistryCreator {
     private AccountingRegistry accountingReg = new AccountingRegistry ();
 
     /**Constructor**/
-    public RegistryCreator(CustomerRegistry customerReg, ItemRegistry itemReg, AccountingRegistry accountingReg, InventoryRegistry inventoryReg) {
+    public RegistryCreator(CustomerRegistry customerReg, ItemRegistry itemReg, AccountingRegistry accountingReg, InventoryRegistry inventoryReg) throws Exception {
         this.customerReg = customerReg;
         this.itemReg = itemReg;
         this.accountingReg = accountingReg;
         this.inventoryReg = inventoryReg;
     }
 
-    public RegistryCreator() {
+    public RegistryCreator() throws Exception {
 
     }
 
@@ -24,15 +26,14 @@ public class RegistryCreator {
     {
         return itemReg;
     }
-    /*public ArrayList<CustomerRegistry> getCustomerReg()
-    {
-        return customerReg;
-    }*/
-    public InventoryRegistry getInventoryReg()
+    public CustomerRegistry getCustomerRegistry(){
+    return customerReg;
+    }
+    public InventoryRegistry getInventoryRegistry()
     {
         return inventoryReg;
     }
-    public AccountingRegistry getAccountingReg()
+    public AccountingRegistry getAccountingRegistry()
     {
         return accountingReg;
     }

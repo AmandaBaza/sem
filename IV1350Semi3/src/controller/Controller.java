@@ -11,18 +11,14 @@ public class Controller {
     private CustomerRegistry customerReg;
     private CashRegister cashReg;
 
-    public void startNewSale() {
+    public void startNewSale() throws Exception {
         sale = new Sale();
-        customerReg = new CustomerRegistry();
-        cashReg = new CashRegister();
-        itemReg = new ItemRegistry();
     }
 
-
-    /**
-     * Class constructor
-     **/
+    /**constructor**/
     public Controller(RegistryCreator regCreator) {
+        this.customerReg = regCreator.getCustomerRegistry();
+        this.cashReg = new CashRegister(regCreator.getAccountingRegistry());
         this.itemReg = regCreator.getItemRegistry();
     }
 
@@ -37,7 +33,7 @@ public class Controller {
     public double callGetPrice(ItemDTO item) {
         return item.getPrice();
     }
-    public float callGetVAT(ItemDTO item) {
+    public int callGetVAT(ItemDTO item) {
         return item.getVAT();
     }
 
@@ -50,7 +46,6 @@ public class Controller {
         checksForDiscount(customerID);
         cashReg.accountingUpdate(sale.getTotalPrice());
         sale.inventoryUpdate();
-        sale.accountingUpdate();
     }
 
     //returns total price to pay

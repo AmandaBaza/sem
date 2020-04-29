@@ -10,12 +10,12 @@ public class AccountingRegistry {
         SetAccounting(newAcc);
         return newAcc;
     }
-    /*Returns A solid value since there is no database*/
+    private void SetAccounting(double newAccounting){
+        //Contacts database and sets new Accounting Value
+    }
+
+    /*Instead of database*/
     private double GetAccounting(){
         return 1500;
     }
-    private void SetAccounting(double newAccounting){
-        //Contacts database and sends new Accounting Value
-    }
-
 }

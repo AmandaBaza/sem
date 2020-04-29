@@ -11,12 +11,17 @@ import org.junit.Test;
 
 public class SaleTest {
 
-    private Sale preMadeSaleForTest() {
+    private Sale preMadeSaleForTest() throws Exception {
         int itemId = 7;
-        float VAT = 8;
+        int VAT = 25;
         String name = "yogurt";
         double price = 13;
-        ItemDTO item = new ItemDTO(itemId, VAT, name, price);
+        ItemDTO item = null;
+        try {
+             item = new ItemDTO(itemId, VAT, name, price);
+        }catch(Exception e){
+            Assert.fail("Fail in preMadeSaleForTest");
+        }
         Sale sale = new Sale();
         sale.addItem(item, 2);
         sale.addItem(item, 4);
@@ -24,12 +29,18 @@ public class SaleTest {
     }
 
     @Test
-    public void addItem(){
+    public void addItem() throws Exception {
         int itemId = 7;
-        float VAT = 8;
+        int VAT = 12;
         String name = "yogurt";
         double price = 13;
-        ItemDTO item = new ItemDTO(itemId, VAT, name, price);
+        ItemDTO item =null;
+        try {
+             item = new ItemDTO(itemId, VAT, name, price);
+        }catch (Exception err){
+            Assert.fail("Couldn't create item");
+        }
+
         Sale sale = new Sale();
         try {
             sale.addItem(item, 2);
@@ -102,7 +113,7 @@ public class SaleTest {
     }
 
     @Test
-    public void updateTotalPriceTest(){
+    public void updateTotalPriceTest() throws Exception {
         Sale sale = preMadeSaleForTest();
         sale.updateTotalPrice(12.3);
         assertEquals("Testing discount", (13*6*(1-0.123)), sale.getTotalPrice(), 0.0001);
@@ -110,7 +121,7 @@ public class SaleTest {
         assertEquals("If discount is 100% the price to pay is 0", 0, sale.getTotalPrice(), 0.0001);
     }
     @Test
-    public void inventoryUpdateTest(){
+    public void inventoryUpdateTest() throws Exception {
         Sale sale = preMadeSaleForTest();
         InventoryRegistry inventoryRegistry = new InventoryRegistry();
         try {
@@ -119,7 +130,6 @@ public class SaleTest {
         } catch (Exception e) {}
 
         sale = new Sale();
-        //
         sale.addItem((new ItemDTO(1, 12, "Apple", 12)),1);
         try {
             sale.inventoryUpdate();

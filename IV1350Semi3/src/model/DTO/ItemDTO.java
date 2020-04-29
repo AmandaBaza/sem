@@ -4,10 +4,13 @@ public class ItemDTO {
     private String name; //Item name
     private int id; //Item Identifier
     private double price; //Item price, Where vat is included
-    private float VAT; //Item VAT in %
+    private int VAT; //Item VAT in %
     private int quantity; //quantity of the item (how many there are of the same item)
 
-    public ItemDTO (int itemId, float VAT, String name, double price) {
+    public ItemDTO (int itemId, int VAT, String name, double price) throws Exception{
+        if((VAT != 25 && VAT != 12 && VAT != 6)){
+            throw new Exception("VAT can only be 25%, 12% or 6%");
+        }
         this.id = itemId;
         this.name = name;
         this.price = price;
@@ -23,7 +26,7 @@ public class ItemDTO {
     public double getPrice() {
         return price;
     }
-    public float getVAT() {
+    public int getVAT() {
         return VAT;
     }
     public int getItemQuantity() {
