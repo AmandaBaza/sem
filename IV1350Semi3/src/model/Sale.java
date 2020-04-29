@@ -1,10 +1,7 @@
 package model;
 
-import dbHandler.AccountingRegistry;
 import dbHandler.InventoryRegistry;
 import DTO.ItemDTO;
-import DTO.Receipt;
-
 import java.util.ArrayList;
 
 public class Sale {

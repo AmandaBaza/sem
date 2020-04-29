@@ -2,15 +2,23 @@ package DTO;
 
 import printerHandler.Printer;
 import model.Sale;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Receipt {
     private Printer printer;
-    /*Constructor*/
+    /**Constructor**/
     public Receipt(){
         this.printer = new Printer();//connects to the printer
+    }
+
+    /**
+     * Logic to create and print the receipt though the printer
+     * @param sale contains all necessary information that's needed for the receipt
+     */
+    public void printReceipt (Sale sale) {
+        String receipt = receipt(sale);
+        printer.print(receipt);
     }
 
     private String receipt(Sale sale) {
@@ -40,10 +48,6 @@ public class Receipt {
         return itemAndPriceAsString;
     }
 
-    public void printReceipt (Sale sale) {
-        String receipt = receipt(sale);
-        printer.print(receipt);
-    }
     /*Since there is no database for this information, these are pre set*/
     private String getStoreName(){
         return "Best Store";

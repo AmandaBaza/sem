@@ -1,7 +1,7 @@
 package printerHandler;
 
 public class Printer {
-    /*Constructor*/
+    /**Constructor**/
     public Printer(){
     }
     /**Connects to printer to print out the receipt.
