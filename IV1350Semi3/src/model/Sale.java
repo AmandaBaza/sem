@@ -2,20 +2,23 @@ package model;
 
 import dbHandler.AccountingRegistry;
 import dbHandler.InventoryRegistry;
-import model.DTO.ItemDTO;
-import model.DTO.Receipt;
+import DTO.ItemDTO;
+import DTO.Receipt;
 
 import java.util.ArrayList;
 
 public class Sale {
     private double totalPrice = 0;
+    private double totalVAT =0;
     private double amountPaid = 0;
     private double change = 0;
+    private double discount = 0;
     private ArrayList<ItemDTO> allItems = new ArrayList<>();
 
     private AccountingRegistry accountingReg;
     private InventoryRegistry inventoryReg;
     private Receipt receipt;
+
 
     public Sale() throws Exception {
         receipt = new Receipt();
@@ -34,8 +37,8 @@ public class Sale {
         else {
             allItems.add(item);
         }
-
-        this.totalPrice = totalPrice + (item.getPrice()*itemQuantity);
+        this.totalPrice = totalPrice + ((item.getPrice()+item.getVAT())*itemQuantity);
+        this.totalVAT = totalVAT + item.getVAT()*itemQuantity;
     }
     private Boolean exists(ItemDTO itemDTO){
         for(ItemDTO itemExisting:allItems){
@@ -56,10 +59,15 @@ public class Sale {
         if (change < 0){
             throw new Exception("Not enough money paid, need to pay more");
         }
+        //rounding it manually to 2 decimals
+        change = change*100;
+        change = Math.round(change);
+        change = change/100;
         return change;
     }
 
     public void updateTotalPrice(double discount) {
+        this.discount = discount;
         if (discount != 0)
             totalPrice = totalPrice * (1 - (discount/100));//100%-Discount in %
         else
@@ -89,4 +97,11 @@ public class Sale {
             return allItems;
     }
 
+    public double getTotalVAT() {
+        return totalVAT;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
 }

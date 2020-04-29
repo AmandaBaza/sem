@@ -1,6 +1,6 @@
 package dbHandler;
 
-import model.DTO.ItemDTO;
+import DTO.ItemDTO;
 
 public class ItemRegistry {
     /** constructor **/

@@ -1,5 +1,5 @@
 package dbHandler;
-import model.DTO.ItemDTO;
+import DTO.ItemDTO;
 
 public class InventoryRegistry {
     private ItemDTO item;
@@ -10,7 +10,7 @@ public class InventoryRegistry {
         this.item= item;
         this.quantity= quantity;
     }
-    public InventoryRegistry() throws Exception {
+    public InventoryRegistry()  {
     }
 
     /*Included 0 in exception, not cause any data would be wrong after the update if

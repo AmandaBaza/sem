@@ -2,7 +2,7 @@ package controller;
 
 import dbHandler.*;
 import model.*;
-import model.DTO.*;
+import DTO.*;
 
 
 public class Controller {
@@ -26,15 +26,6 @@ public class Controller {
         ItemDTO item = itemReg.getItemSpecifications(itemIdentifier, itemQuantity);
             sale.addItem(item, itemQuantity);
             return item;
-    }
-    public String callGetName(ItemDTO item) {
-        return item.getName();
-    }
-    public double callGetPrice(ItemDTO item) {
-        return item.getPrice();
-    }
-    public int callGetVAT(ItemDTO item) {
-        return item.getVAT();
     }
 
     private void checksForDiscount(String customerID) {
