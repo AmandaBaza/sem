@@ -1,7 +1,7 @@
 package DTO;
 
 import printerHandler.Printer;
-import model.Sale;
+import model.sale.Sale;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,7 +23,7 @@ public class Receipt {
 
     private String receipt(Sale sale) {
         double totalPrice = sale.getTotalPrice();
-        double amountPaid = sale.getAmoutPaid();
+        double amountPaid = sale.getAmountPaid();
         double change = sale.getChange();
         double totalVAT = sale.getTotalVAT();
         double discount = sale.getDiscount();

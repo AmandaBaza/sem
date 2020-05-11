@@ -1,12 +1,41 @@
-package test;
+package controller;
 
-import DTO.ItemDTO;
-import controller.Controller;
-import dbHandler.*;
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.Assert.assertEquals;
+class ControllerTest {
+
+    @org.junit.jupiter.api.BeforeEach
+    void setUp() {
+    }
+
+    @org.junit.jupiter.api.AfterEach
+    void tearDown() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void startNewSale() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void callAddItem() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void startPayment() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void totalPrice() {
+    }
+
+    @org.junit.jupiter.api.Test
+    void payment() {
+    }
+}
+/*
+package controller;
+
+
 
 public class ControllerTest {
     private Controller createContoller() throws Exception {
@@ -66,3 +95,5 @@ public class ControllerTest {
         assertEquals(1,contr.payment(106.0001), 0.001);
     }
 }
+
+ */

@@ -3,6 +3,7 @@ package controller;
 import dbHandler.*;
 import model.*;
 import DTO.*;
+import model.sale.Sale;
 
 /**
  * View calls all model classes through here.
@@ -56,7 +57,7 @@ public class Controller {
      * @param customerID is used to identify costumer when checking for discount
      * @throws Exception
      */
-    public void startPayment(String customerID) throws Exception {
+    public void startPayment(String customerID) {
         checksForDiscount(customerID);
         cashReg.accountingUpdate(sale.getTotalPrice());
         sale.inventoryUpdate();
@@ -73,9 +74,11 @@ public class Controller {
      * Handles the payment logic, taking the money into Sale, and calls the printReceipt method to make the receipt
      * @param cash is the amount of money that is payed
      * @return the change
-     * @throws Exception from Sale.payment if cash is negative (not enough money paid)
+     * @throws Exception
+     *
+     * TODO from Sale.payment if cash is negative (not enough money paid)
      */
-    public double payment(double cash) throws Exception {
+    public double payment(double cash){
         double change = sale.payment(cash);
         receipt.printReceipt(sale);
         return change;
