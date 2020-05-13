@@ -1,57 +1,7 @@
 package model;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-class SaleTest {
-
-    @Test
-    void addItem() {
-    }
-
-    @Test
-    void payment() {
-    }
-
-    @Test
-    void updateTotalPrice() {
-    }
-
-    @Test
-    void inventoryUpdate() {
-    }
-
-    @Test
-    void getTotalPrice() {
-    }
-
-    @Test
-    void getAmountPaid() {
-    }
-
-    @Test
-    void getChange() {
-    }
-
-    @Test
-    void getAllItems() {
-    }
-
-    @Test
-    void getTotalVAT() {
-    }
-
-    @Test
-    void getDiscount() {
-    }
-}
-/*
-package test;
-
 import dbHandler.InventoryRegistry;
 import DTO.ItemDTO;
-import model.sale.Sale;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
@@ -187,8 +137,9 @@ public class SaleTest {
         }
         catch (Error error){}
     }
+}
 
-
+/*
     Cant seem to do a unit test on receipt() since it
     doesn't return or updates anything, will need to compare out print
     Not sure out prints can be compared but the problem is also in the
@@ -211,7 +162,4 @@ public class SaleTest {
                 ;
         assertEquals("Checks if Receipt looks the way it should", System.out.print(expectedPrintout) , sale.payment(13*6));
     }
-
-
-}
  */
