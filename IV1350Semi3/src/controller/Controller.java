@@ -3,8 +3,7 @@ package controller;
 import dbHandler.*;
 import model.*;
 import DTO.*;
-import model.Sale;
-import model.SaleException;
+import view.TotalRevenueView;
 
 /**
  * View calls all model classes through here.
@@ -15,6 +14,7 @@ public class Controller {
     private CustomerRegistry customerReg;
     private CashRegister cashReg;
     private Receipt receipt;
+    private TotalRevenueView totalRevenueObs;
 
     /**starts a new sale*/
     public void startNewSale(){
@@ -71,7 +71,8 @@ public class Controller {
      */
     public void startPayment(String customerID) throws Exception {
         checksForDiscount(customerID);
-        cashReg.accountingUpdate(sale.getTotalPrice());
+        cashReg.payment(sale.getTotalPrice());
+        cashReg.addObserver(totalRevenueObs);
         try{
             sale.inventoryUpdate();
         }catch (InvalidItemIdentifierException exc) {
