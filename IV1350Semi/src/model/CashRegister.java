@@ -36,6 +36,10 @@ public class CashRegister {
         totalRevenueObserver.newTotal(totalPrice);
     }
 
+    /**
+     * code to add Observer
+     * @param totalRevenueObs is the observer to be added (by setting it as the totalRevenueObserver)
+     */
     public void addObserver(TotalRevenueView totalRevenueObs) {
         totalRevenueObserver = totalRevenueObs;
     }

@@ -1,8 +1,8 @@
 package dbHandler;
 
 /**
- * TODO
- * @thows
+ * Exception to throw when a database isn't reachable
+ * it also prints out which database that is
  */
 public class DatabaseCanNotBeReachedException extends Exception {
     public DatabaseCanNotBeReachedException(String registry){

@@ -21,6 +21,7 @@ public class CustomerRegistry {
      * Checks of the Customer is a member and if there is any discounts for them
      * @param customerId used to identify customer
      * @return the discount, if they aren't a, member it returns 0 (as in 0% discount)
+     * @throws DatabaseCanNotBeReachedException when database cant be reached (though getAllCustomers)
      */
     public double getCustomerDiscount(String customerId) throws DatabaseCanNotBeReachedException {
         CustomerRegistry[] allCustomers = getAllCustomers();

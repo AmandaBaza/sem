@@ -1,9 +1,17 @@
 package view;
 import model.TotalRevenue;
 
+/**
+ * @author Amanda
+ * class to be implemented to the interface TotalRevenue
+ */
 public class TotalRevenueView implements TotalRevenue {
     private double revenue;
 
+    /**
+     * adds the total price of a sale
+     * @param payment is the total price to be added into the sum
+     */
     @Override
     public void newTotal(double payment) {
         this.revenue = this.revenue + payment;

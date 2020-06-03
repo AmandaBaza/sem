@@ -53,7 +53,7 @@ public class Sale {
      * Payment logic in sale
      * @param cash how much money is used to pay with
      * @return change, rounded to two decimals
-     * @throws Exception is thrown if they payed too little (less than total price)
+     * @throws SaleException is thrown if they payed too little (less than total price)
      */
     public double payment(double cash) throws SaleException{
         amountPaid = cash;
@@ -81,8 +81,7 @@ public class Sale {
     }
 
     /**
-     * Update Inventory with all the items that was been bought
-     * @throws Exception if exception is thrown from inventoryUpdate
+     * Updates Inventory with all the items that was been bought
      */
     public void inventoryUpdate() {
         for (ItemDTO item: allItems) {

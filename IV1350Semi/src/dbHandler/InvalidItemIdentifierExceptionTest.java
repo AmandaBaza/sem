@@ -8,7 +8,8 @@ import org.junit.rules.ExpectedException;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- *
+ * @author Amanda
+ * tests for InvalidItemIdentifierExceptions
  */
 
 public class InvalidItemIdentifierExceptionTest {

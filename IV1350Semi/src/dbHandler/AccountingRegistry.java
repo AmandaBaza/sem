@@ -10,6 +10,7 @@ public class AccountingRegistry {
      * Updates AccountingRegistry
      * @param moneyToAccount how much to add (or remove if it's negative) to the Accounting Registry
      * @return the current Accounting value
+     * @throws DatabaseCanNotBeReachedException when database cant be reached (though GetAccounting)
      */
     public double UpdateAccountingRegistry(double moneyToAccount) throws DatabaseCanNotBeReachedException {
        double accounting = GetAccounting();

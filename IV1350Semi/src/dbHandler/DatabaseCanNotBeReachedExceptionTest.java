@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Amanda
+ * tests for DatabaseCanNotBeReachedException
  */
 public class DatabaseCanNotBeReachedExceptionTest {
 

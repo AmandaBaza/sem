@@ -37,9 +37,8 @@ public class Controller {
      * @param itemIdentifier is used to identify the item
      * @param itemQuantity shows how many of the item is to be added
      * @return the item as a ItemDTO
-     * TODO
-     * @throws DatabaseCanNotBeReachedException
-     * @throws InvalidItemIdentifierException
+     * @throws DatabaseCanNotBeReachedException when the database for item registry can not be reached
+     * @throws InvalidItemIdentifierException when the item Id is invalid
      */
     public ItemDTO callAddItem(int itemIdentifier, int itemQuantity) throws InvalidItemIdentifierException, DatabaseCanNotBeReachedException {
         ItemDTO item;
@@ -51,6 +50,7 @@ public class Controller {
     /**
      *  Gets customers discount and updates the price according to it
      * @param customerID is used to identify costumer and therefor find their discount
+     * @throws DatabaseCanNotBeReachedException when the database for customer registry can not be reached
      */
     public void checksForDiscount(String customerID) throws DatabaseCanNotBeReachedException {
         double discount = 0;
@@ -60,7 +60,6 @@ public class Controller {
 
     /**
      * Starts the payment by updates accounting registry and updates the inventory (though Sale)
-     * @throws Exception TODO
      */
     public void startPayment() {
         cashReg.addObserver(totalRevenueObs);
@@ -78,7 +77,7 @@ public class Controller {
      * Handles the payment logic, taking the money into Sale, and calls the printReceipt method to make the receipt
      * @param cash is the amount of money that is payed
      * @return the change
-     * @throws SaleException from Sale.payment if cash is negative (not enough money paid)
+     * @throws SaleException from Sale.payment if cash is negative (not enough money is paid)
      */
     public double payment(double cash) throws SaleException {
         double change = sale.payment(cash);
