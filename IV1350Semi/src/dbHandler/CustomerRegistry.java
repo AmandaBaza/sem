@@ -25,7 +25,6 @@ public class CustomerRegistry {
     public double getCustomerDiscount(String customerId) throws DatabaseCanNotBeReachedException {
         CustomerRegistry[] allCustomers = getAllCustomers();
         if(allCustomers == null){
-
             throw new DatabaseCanNotBeReachedException("Customer Registry");
         }
         for(CustomerRegistry customer: allCustomers){

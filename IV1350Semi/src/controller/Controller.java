@@ -40,46 +40,30 @@ public class Controller {
      */
     public ItemDTO callAddItem(int itemIdentifier, int itemQuantity) throws Exception {
         ItemDTO item;
-        try {
-            item = itemReg.getItemSpecifications(itemIdentifier, itemQuantity);
-            sale.addItem(item, itemQuantity);
-        }catch (InvalidItemIdentifierException exc){
-            throw exc;
-        }
+        item = itemReg.getItemSpecifications(itemIdentifier, itemQuantity);
+        sale.addItem(item, itemQuantity);
         return item;
     }
 
     /**
      *  Gets customers discount and updates the price according to it
-     * @param customerID is used to find the customer and therefor their discount
+     * @param customerID is used to identify costumer and therefor find their discount
      */
-    private void checksForDiscount(String customerID){
+    public void checksForDiscount(String customerID) throws DatabaseCanNotBeReachedException {
         double discount = 0;
-        try{
-            discount = customerReg.getCustomerDiscount(customerID);
-        }catch(DatabaseCanNotBeReachedException exc){
-            System.out.println("\nCan not check system for for Customer discount at the moment, try again");
-            System.out.println("\nLOGGER: Cannot call Customer Registry database");
-        }
+        discount = customerReg.getCustomerDiscount(customerID);
         sale.updateTotalPrice(discount);
     }
 
     /**
-     * Starts the payment by checking discount, updates accounting registry and updates the inventory (though Sale)
-     * @param customerID is used to identify costumer when checking for discount
+     * Starts the payment by updates accounting registry and updates the inventory (though Sale)
      * @throws Exception
      */
-    public void startPayment(String customerID) throws Exception {
-        checksForDiscount(customerID);
-        cashReg.payment(sale.getTotalPrice());
+    public void startPayment() {
         cashReg.addObserver(totalRevenueObs);
-        try{
-            sale.inventoryUpdate();
-        }catch (InvalidItemIdentifierException exc) {
-            throw exc;
-        }
+        cashReg.payment(sale.getTotalPrice());
+        sale.inventoryUpdate();
     }
-
     /**
      *  returns total price to pay
      */
@@ -99,4 +83,11 @@ public class Controller {
         return change;
     }
 
+    /**
+     * TODO
+     * @param tR
+     */
+    public void addRevenueObserver(TotalRevenueView tR) {
+        totalRevenueObs = tR;
+    }
 }

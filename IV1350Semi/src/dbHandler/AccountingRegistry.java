@@ -13,7 +13,7 @@ public class AccountingRegistry {
      */
     public double UpdateAccountingRegistry(double moneyToAccount) throws DatabaseCanNotBeReachedException {
        double accounting = GetAccounting();
-       if(accounting < 0){
+       if(Double.compare(accounting, -1) ==0 ){
            System.out.println("\nLOGGER: Cannot call Accounting Registry database");
            throw new DatabaseCanNotBeReachedException("Accounting Registry");
        }
@@ -27,9 +27,9 @@ public class AccountingRegistry {
 
     /**calls to database, instead of database it's manually added**/
     private double GetAccounting(){
-        return 1500;
+        //return 1500;
 
         //manual representation if database cannot be reached
-        //return -1;
+        return -1;
     }
 }

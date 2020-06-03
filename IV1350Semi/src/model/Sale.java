@@ -53,10 +53,9 @@ public class Sale {
      * Payment logic in sale
      * @param cash how much money is used to pay with
      * @return change, rounded to two decimals
-     * @throws Exception
-     * TODO is thrown if they payed too little (less than total price)
+     * @throws Exception is thrown if they payed too little (less than total price)
      */
-    public double payment(double cash) throws Exception{
+    public double payment(double cash) throws SaleException{
         amountPaid = cash;
         change = (amountPaid - totalPrice);
         if (change < 0){
@@ -85,12 +84,13 @@ public class Sale {
      * Update Inventory with all the items that was been bought
      * @throws Exception if exception is thrown from inventoryUpdate
      */
-    public void inventoryUpdate() throws Exception {
+    public void inventoryUpdate() {
         for (ItemDTO item: allItems) {
-            try {
+            try{
                 inventoryReg.inventoryUpdate(item, item.getItemQuantity());
-            }catch (InvalidItemIdentifierException exc){
-                throw exc;
+            }catch (Exception exc){
+                System.out.println("LOGGER: Exception" +exc+ "thrown in InventoryRegistry.java in inventoryUpdate");
+                System.out.println("LOGGER: Item causing this exception: "+item.getName()+"\nLOGGER: ID: "+item.getItemIdentifier());
             }
         }
     }

@@ -48,9 +48,9 @@ public class InventoryRegistry {
         InventoryRegistry item2 = new InventoryRegistry(new ItemDTO(2, 6, "Banana", 9), 50);
         //InventoryRegistry item3 = new InventoryRegistry(new ItemDTO(3, 12, "Pear", 8), 30);
         InventoryRegistry item4 = new InventoryRegistry(new ItemDTO(4, 25, "Orange", 10), 10);
-        //return new InventoryRegistry[]{item1, item2, item4};
+        return new InventoryRegistry[]{item1, item2, item4};
 
         //manual representation if database cannot be reached
-        return null;
+        //return null;
     }
 }

@@ -2,7 +2,10 @@ package view;
 
 import controller.Controller;
 import DTO.ItemDTO;
+import dbHandler.DatabaseCanNotBeReachedException;
 import dbHandler.InvalidItemIdentifierException;
+
+import java.util.Scanner;
 
 public class View {
     private Controller contr;
@@ -13,6 +16,7 @@ public class View {
 
     public View(Controller contr) {
         this.contr = contr;
+        contr.addRevenueObserver(new TotalRevenueView());
     }
 
     public void executions() throws Exception {
@@ -43,11 +47,24 @@ public class View {
                     System.out.println("Total price:" + totalPrice+"\n");
                 }
                 catch(InvalidItemIdentifierException e){
-                    System.out.println("This item with identity number" + itemIdentifiers[i] + " does not exist. Try again or continue\n");
+                    System.out.println("This item with identity number " + itemIdentifiers[i] + " does not exist. Try again or continue\n");
                 }
             }
             //All items are now registered, sale is now ended and Payment will start
-            contr.startPayment(customerID);
+            boolean userWantsToTryAgain = true;
+            while (userWantsToTryAgain) {
+                try {
+                    contr.checksForDiscount(customerID);
+                } catch (DatabaseCanNotBeReachedException exc) {
+                    Scanner in = new Scanner(System.in);
+                    System.out.println("\nLOGGER: Cannot call Customer Registry database");
+                    System.out.println("\nCan not check system for for Customer discount at the moment, want to try again? y/n");
+                    if (in.nextLine().toLowerCase().equals("n")) {
+                        userWantsToTryAgain = false;
+                    }
+                }
+            }
+            contr.startPayment();
             double change = contr.payment(cash);
         System.out.println("\nTotal price:"+ contr.totalPrice());
             System.out.println("Money paid:" + cash);

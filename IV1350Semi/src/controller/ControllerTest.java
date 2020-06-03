@@ -44,13 +44,15 @@ public class ControllerTest {
         Controller contr = createContoller();
         contr.callAddItem(4, 2);
         String customerId = "2000-01-01-1230"; //personal number for a member
-        contr.startPayment(customerId);
+        contr.checksForDiscount(customerId);
+        contr.startPayment();
         assertEquals(35, contr.totalPrice(), 0.001);
 
         //new sale with a non member (has no discount)
         contr.startNewSale();
         contr.callAddItem(4, 2);
-        contr.startPayment("2000-00-00-0000");
+        contr.checksForDiscount("2000-00-00-0000");
+        contr.startPayment();
         assertEquals(70, contr.totalPrice(), 0.001);
 
     }
