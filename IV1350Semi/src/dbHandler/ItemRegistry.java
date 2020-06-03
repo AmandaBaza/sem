@@ -7,7 +7,7 @@ public class ItemRegistry {
     public ItemRegistry(){
     }
 
-    public ItemDTO getItemSpecifications(int itemId, int itemQuantity) throws Exception {
+    public ItemDTO getItemSpecifications(int itemId, int itemQuantity) throws InvalidItemIdentifierException, DatabaseCanNotBeReachedException {
         ItemDTO item;
         try {
              item = getItemInfo(itemId);
